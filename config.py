@@ -29,13 +29,6 @@
 #     with open('./config/prompts/twitter-mg-farmer-prompts.txt','w') as f: [f.write(prompt+'\n') for prompt in open(f'{args.path}','r').read().splitlines()]
 #     prinT('Twitter MG-Farmer prompts', './config/prompts/twitter-mg-farmer-prompts.txt')
 
-# import requests
-# endpoint = "https://dolphin-anty-api.com/browser_profiles/statuses/:status_id"
-# data = {"ip": "212.8.250.240"}
-# headers = {"Authorization": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJhdWQiOiIxIiwianRpIjoiNTNhOTE4YzgzYTU1YTM4MTk5ODE0ODMyMzAzOGU2YjZkNDVhOGYyOTFlNzYwMjEyMTU3MDMyYzgzMzNkODNlZThhNzUzYmY3MDE5N2ZhNTciLCJpYXQiOjE3MDMyNTU0MTQuMzc0Mzc5LCJuYmYiOjE3MDMyNTU0MTQuMzc0MzgyLCJleHAiOjE3MDU4NDc0MTQuMzQyNjA0LCJzdWIiOiIyODU1NzcwIiwic2NvcGVzIjpbXX0.RVp_9CkjJ75avfmyYuvWyhBzvGu9fp-FCFMMvml6qa22mWdX9SyS7r29MXCrw1mbJU3dtUZup4sbJDnfdRp19g1a1FvctP_GXnx8D3z-Yp-F2zF3ZxQNl3VdAvJWSfh1b0FphHdB8FIVv8Bo6AD-s4A2UAbnAXAdR3-NffcFzkoUk2M87iQjHRFwhLn-7ZkgvvfD9L1d31Cn_Lu25Xh6G07aRMTfcDK7AksiCarH57WlOS4u4Tbh1j1Ak0j-q6dcFleTzXBZDqI6yvJJ1MbQ2ajzn4yawxoCGwnk6PyaXU0IiVZSKEsV89Fcc0snb8XpcPpXfZn_j09yfN7CetzZPB2k8lZ8WZGrDwB336gIQJitexNv6fdjjPxvVme1kpnCN4I-kfoLjgPgo7a_638YczrqtNFhHNbTq1snynuKmTEHx1qbtQ9gUVGqrvSIowAt1JqcmAZOSJsGRq5u8QQAjNZlME6oUhCoou6LL0P3okIhfFKgrj6iaKCjWdVFtsMYC2QVVrsLdasJCSnaQJgl4H-GZLZ47IYMm7NPNO9RTgEfwSfdm_XObWUeOhhWqQZf95nsKV87vadsdYUW9l99mhn22mfzbmuqugnqSTbavh1cF29N7iDOyrn4dbKaNppqnUK19GXHpjJUg-zrqRR28nvG6naKpEqf_pJ-pPyFKgE"}
-
-# print(requests.post(endpoint, data=data, headers=headers).json())
-
 from funcs import profiles
 
 for profile in profiles:
