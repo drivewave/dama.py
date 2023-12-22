@@ -1,4 +1,4 @@
-# pending 
+# PENDING
 
 # import argparse
 # from funcs import Fore, Style
