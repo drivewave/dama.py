@@ -1,4 +1,4 @@
-# pending 
+# PENDIENTE
 
 # import argparse
 # from funcs import Fore, Style
@@ -28,3 +28,14 @@
 # if args.usage == 'twitter.mg-farmer.prompts':
 #     with open('./config/prompts/twitter-mg-farmer-prompts.txt','w') as f: [f.write(prompt+'\n') for prompt in open(f'{args.path}','r').read().splitlines()]
 #     prinT('Twitter MG-Farmer prompts', './config/prompts/twitter-mg-farmer-prompts.txt')
+
+from funcs import profiles, Fore, Style
+
+for profile in profiles:
+    try:
+        if open(f'./config/reg/pics/{profile}.txt','r').read() != None:
+            print(Fore.RED+f'{profile} already configured.'+Style.RESET_ALL)
+    except:
+        with open(f'./config/reg/pics/{profile}.txt','w') as f: f.write(''), f.close()
+        with open(f'./config/reg/tweets/{profile}.txt','w') as f: f.write(''), f.close()
+        print(Fore.GREEN+f'{profile} configured.'+Style.RESET_ALL)
