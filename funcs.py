@@ -168,7 +168,7 @@ def twitterScheduler(margindays, hour, minutes):
             actualyear = datetime.today().year
             actualmonth = datetime.today().month
             actualday = datetime.today().day
-            picspath = open('./config/pics-path.txt', 'r').read().splitlines()[i] # <- 0 es i segun cada perfil
+            picspath = open('./config/pics-path.txt', 'r').read().splitlines()[i] 
             pics = listdir(picspath)
             d = actualday
             m = actualmonth
@@ -244,48 +244,47 @@ def twitterScheduler(margindays, hour, minutes):
                             d = 1
                             m = 1
                             y += 1
-                    if r < len(tweetsreg):
-                        try:         
-                            chrome_options.add_experimental_option('debuggerAddress',f'localhost:{ports[i]}')
-                            browser = webdriver.Chrome(service=service,options=chrome_options)
-                            wait = WebDriverWait(browser, 1000)
-                            browser.get('https://twitter.com/compose/tweet/schedule')
-                            sleep(uniform(3,4))
-                            wait.until(EC.element_to_be_clickable(('xpath', f'//select[@aria-labelledby="SELECTOR_1_LABEL"]//option[@value="{m}"]')))
-                            browser.find_element('xpath', f'//select[@aria-labelledby="SELECTOR_1_LABEL"]//option[@value="{m}"]').click()
-                            wait.until(EC.element_to_be_clickable(('xpath', f'//select[@aria-labelledby="SELECTOR_2_LABEL"]//option[@value="{d}"]')))
-                            browser.find_element('xpath', f'//select[@aria-labelledby="SELECTOR_2_LABEL"]//option[@value="{d}"]').click()
-                            wait.until(EC.element_to_be_clickable(('xpath', f'//select[@aria-labelledby="SELECTOR_3_LABEL"]//option[@value="{y}"]')))
-                            browser.find_element('xpath', f'//select[@aria-labelledby="SELECTOR_3_LABEL"]//option[@value="{y}"]').click()
-                            wait.until(EC.element_to_be_clickable(('xpath', f'//select[@aria-labelledby="SELECTOR_4_LABEL"]//option[@value="{hour}"]')))
-                            browser.find_element('xpath', f'//select[@aria-labelledby="SELECTOR_4_LABEL"]//option[@value="{hour}"]').click()
-                            wait.until(EC.element_to_be_clickable(('xpath', f'//select[@aria-labelledby="SELECTOR_5_LABEL"]//option[@value="{minutes}"]')))
-                            browser.find_element('xpath', f'//select[@aria-labelledby="SELECTOR_5_LABEL"]//option[@value="{minutes}"]').click()
-                            wait.until(EC.element_to_be_clickable(('xpath', '//span[text()="Confirm"]')))
-                            browser.find_element('xpath', '//span[text()="Confirm"]').click()
-                            sleep(uniform(1,2))
-                            wait.until(EC.element_to_be_clickable(('xpath', '//span[text()="Post"]')))
-                            browser.find_element('xpath', '//span[text()="Post"]').click()
-                            sleep(uniform(1,2))    
-                            browser.find_element('xpath', '//div[@role="textbox"]').send_keys(tweet)
-                            sleep(uniform(1,2))
-                            image = Image.open(f'{picspath}\\{pic}')
-                            output = BytesIO()
-                            image.convert("RGB").save(output, "BMP")
-                            data = output.getvalue()[14:]
-                            output.close()
-                            send_to_clipboard(win32clipboard.CF_DIB, data)
-                            browser.find_element('xpath', '//div[@role="textbox"]').send_keys(Keys.CONTROL + "v")
-                            sleep(uniform(1,2))
-                            wait.until(EC.element_to_be_clickable(('xpath', '//span[text()="Schedule"]')))
-                            browser.find_element('xpath', '//span[text()="Schedule"]').click()
-                            print(Fore.GREEN+f'Scheduled post in profile: {profiles[i]}'+Style.RESET_ALL), sleep(1)
-                            with open(f'./config/reg/pics/{profiles[i]}.txt','a') as f: f.write(pic+'\n')
-                        except:
-                            print(Fore.RED+f'Something has gone wrong with the picture: {pic} in the profile: {profiles[i]}'+Style.RESET_ALL)
+                    if r < len(tweetsreg):        
+                        chrome_options.add_experimental_option('debuggerAddress',f'localhost:{ports[i]}')
+                        browser = webdriver.Chrome(service=service,options=chrome_options)
+                        wait = WebDriverWait(browser, 1000)
+                        browser.get('https://twitter.com/home'), sleep(1)
+                        browser.get('https://twitter.com/compose/tweet/schedule')
+                        sleep(uniform(3,4))
+                        wait.until(EC.element_to_be_clickable(('xpath', f'//select[@aria-labelledby="SELECTOR_1_LABEL"]//option[@value="{m}"]')))
+                        browser.find_element('xpath', f'//select[@aria-labelledby="SELECTOR_1_LABEL"]//option[@value="{m}"]').click()
+                        wait.until(EC.element_to_be_clickable(('xpath', f'//select[@aria-labelledby="SELECTOR_2_LABEL"]//option[@value="{d}"]')))
+                        browser.find_element('xpath', f'//select[@aria-labelledby="SELECTOR_2_LABEL"]//option[@value="{d}"]').click()
+                        wait.until(EC.element_to_be_clickable(('xpath', f'//select[@aria-labelledby="SELECTOR_3_LABEL"]//option[@value="{y}"]')))
+                        browser.find_element('xpath', f'//select[@aria-labelledby="SELECTOR_3_LABEL"]//option[@value="{y}"]').click()
+                        wait.until(EC.element_to_be_clickable(('xpath', f'//select[@aria-labelledby="SELECTOR_4_LABEL"]//option[@value="{hour}"]')))
+                        browser.find_element('xpath', f'//select[@aria-labelledby="SELECTOR_4_LABEL"]//option[@value="{hour}"]').click()
+                        wait.until(EC.element_to_be_clickable(('xpath', f'//select[@aria-labelledby="SELECTOR_5_LABEL"]//option[@value="{minutes}"]')))
+                        browser.find_element('xpath', f'//select[@aria-labelledby="SELECTOR_5_LABEL"]//option[@value="{minutes}"]').click()
+                        wait.until(EC.element_to_be_clickable(('xpath', '//span[text()="Confirm"]')))
+                        browser.find_element('xpath', '//span[text()="Confirm"]').click()
+                        sleep(uniform(1,2))
+                        wait.until(EC.element_to_be_clickable(('xpath', '//span[text()="Post"]')))
+                        browser.find_element('xpath', '//span[text()="Post"]').click()
+                        sleep(uniform(1,2))    
+                        browser.find_element('xpath', '//div[@role="textbox"]').send_keys(tweet)
+                        sleep(uniform(1,2))
+                        image = Image.open(f'{picspath}\\{pic}')
+                        output = BytesIO()
+                        image.convert("RGB").save(output, "BMP")
+                        data = output.getvalue()[14:]
+                        output.close()
+                        send_to_clipboard(win32clipboard.CF_DIB, data)
+                        browser.find_element('xpath', '//div[@role="textbox"]').send_keys(Keys.CONTROL + "v")
+                        sleep(uniform(8,11))
+                        wait.until(EC.element_to_be_clickable(('xpath', '//span[text()="Schedule"]')))
+                        browser.find_element('xpath', '//span[text()="Schedule"]').click()
+                        print(Fore.GREEN+f'Scheduled post in profile: {profiles[i]}'+Style.RESET_ALL), sleep(1)
+                        with open(f'./config/reg/pics/{profiles[i]}.txt','a') as f: f.write(pic+'\n')
+                        sleep(uniform(1,2))
                     else:
                         break       
                 else: 
                     print(Fore.RED+f'The picture: "{pic}" has already been used in the profile: {profiles[i]}'+Style.RESET_ALL)
-                    sleep(.5)
+                    sleep(.1)
     print(Fore.GREEN+'Twitter Scheduler completed.'+Style.RESET_ALL)
