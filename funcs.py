@@ -185,8 +185,9 @@ def twitterScheduler(margindays, hour, minutes):
                         if tweet not in tweetsreg:
                             print(Fore.GREEN+f'The tweet text: "{tweet}" has not been used in the profile: {profiles[i]}, the script can continue...'+Style.RESET_ALL)
                             with open(f'./config/reg/tweets/{profiles[i]}.txt','a') as f: f.write(tweet+'\n'), f.close()
+                            with open(f'./config/reg/pics/{profiles[i]}.txt','a') as f: f.write(pic+'\n'), f.close()
                             break
-                        if r > len(tweetsreg):
+                        if r > len(open('./config/tweets-texts.txt','r').read().splitlines()):
                             print(Fore.RED+f'Profile: {profiles[i]} has used all available text tweets.'+Style.RESET_ALL)
                             sleep(3)
                             break
@@ -194,57 +195,57 @@ def twitterScheduler(margindays, hour, minutes):
                             print(Fore.RED+f'The tweet text: "{tweet}" has already been used in the profile: {profiles[i]}'+Style.RESET_ALL)
                             sleep(.5)
                             r+=1
-                    d += margindays
-                    if m == 1:
-                        if d >= 31:
-                            d = 1
-                            m = 2
-                    if m == 2:
-                        if d >= 29:
-                            d = 1
-                            m = 3                
-                    if m == 3:
-                        if d >= 31:
-                            d = 1
-                            m = 4                                   
-                    if m == 4:                   
-                        if d >= 30:
-                            d = 1
-                            m = 5                        
-                    if m == 5:                   
-                        if d >= 31:
-                            d = 1
-                            m = 6                       
-                    if m == 6:                  
-                        if d >= 30:
-                            d = 1
-                            m = 7                    
-                    if m == 7:                
-                        if d >= 31:
-                            d = 1
-                            m = 8           
-                    if m == 8:                   
-                        if d >= 31:
-                            d = 1
-                            m = 9                       
-                    if m == 9:                   
-                        if d >= 30:
-                            d = 1
-                            m = 10           
-                    if m == 10:            
-                        if d >= 31:
-                            d = 1
-                            m = 11
-                    if m == 11:
-                        if d >= 30:
-                            d = 1
-                            m = 12
-                    if m == 12:
-                        if d >= 31:
-                            d = 1
-                            m = 1
-                            y += 1
-                    if r < len(tweetsreg):        
+                    if r < len(open('./config/tweets-texts.txt','r').read().splitlines()): 
+                        d += margindays
+                        if m == 1:
+                            if d >= 31:
+                                d = 1
+                                m = 2
+                        if m == 2:
+                            if d >= 29:
+                                d = 1
+                                m = 3                
+                        if m == 3:
+                            if d >= 31:
+                                d = 1
+                                m = 4                                   
+                        if m == 4:                   
+                            if d >= 30:
+                                d = 1
+                                m = 5                        
+                        if m == 5:                   
+                            if d >= 31:
+                                d = 1
+                                m = 6                       
+                        if m == 6:                  
+                            if d >= 30:
+                                d = 1
+                                m = 7                    
+                        if m == 7:                
+                            if d >= 31:
+                                d = 1
+                                m = 8           
+                        if m == 8:                   
+                            if d >= 31:
+                                d = 1
+                                m = 9                       
+                        if m == 9:                   
+                            if d >= 30:
+                                d = 1
+                                m = 10           
+                        if m == 10:            
+                            if d >= 31:
+                                d = 1
+                                m = 11
+                        if m == 11:
+                            if d >= 30:
+                                d = 1
+                                m = 12
+                        if m == 12:
+                            if d >= 31:
+                                d = 1
+                                m = 1
+                                y += 1
                         chrome_options.add_experimental_option('debuggerAddress',f'localhost:{ports[i]}')
                         browser = webdriver.Chrome(service=service,options=chrome_options)
                         wait = WebDriverWait(browser, 1000)
@@ -279,7 +280,6 @@ def twitterScheduler(margindays, hour, minutes):
                         wait.until(EC.element_to_be_clickable(('xpath', '//span[text()="Schedule"]')))
                         browser.find_element('xpath', '//span[text()="Schedule"]').click()
                         print(Fore.GREEN+f'Scheduled post in profile: {profiles[i]}'+Style.RESET_ALL), sleep(1)
-                        with open(f'./config/reg/pics/{profiles[i]}.txt','a') as f: f.write(pic+'\n')
                         sleep(uniform(1,2))
                     else:
                         break       
