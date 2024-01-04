@@ -50,7 +50,7 @@ def startProfiles():
         port = api_request.replace('{"success":true,"automation":{"port":','')[:5]
         if port == '{"suc' or port == '{"err':
             print(Fore.RED+f'Connection error in the ID: {profiles[i]}'+Style.RESET_ALL)
-        with open('./config/ports.txt','a') as f: f.write(port+'\n')
+        with open('./config/ports.txt','a') as f: f.write(port+'\n'), f.close()
     print(Fore.GREEN+'Profiles started.'+Style.RESET_ALL)
 
 def closeProfiles():
