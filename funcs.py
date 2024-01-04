@@ -184,7 +184,7 @@ def twitterScheduler(margindays, hour, minutes):
                         tweet = choice(open('./config/tweets-texts.txt','r').read().splitlines())
                         if tweet not in tweetsreg:
                             print(Fore.GREEN+f'The tweet text: "{tweet}" has not been used in the profile: {profiles[i]}, the script can continue...'+Style.RESET_ALL)
-                            with open(f'./config/reg/tweets/{profiles[i]}.txt','a') as f: f.write(tweet+'\n')
+                            with open(f'./config/reg/tweets/{profiles[i]}.txt','a') as f: f.write(tweet+'\n'), f.close()
                             break
                         if r > len(tweetsreg):
                             print(Fore.RED+f'Profile: {profiles[i]} has used all available text tweets.'+Style.RESET_ALL)
@@ -248,7 +248,6 @@ def twitterScheduler(margindays, hour, minutes):
                         chrome_options.add_experimental_option('debuggerAddress',f'localhost:{ports[i]}')
                         browser = webdriver.Chrome(service=service,options=chrome_options)
                         wait = WebDriverWait(browser, 1000)
-                        browser.get('https://twitter.com/home'), sleep(1)
                         browser.get('https://twitter.com/compose/tweet/schedule')
                         sleep(uniform(3,4))
                         wait.until(EC.element_to_be_clickable(('xpath', f'//select[@aria-labelledby="SELECTOR_1_LABEL"]//option[@value="{m}"]')))
